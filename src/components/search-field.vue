@@ -1,18 +1,11 @@
 <template >
-   <v-form >
-    <v-container>
-      <v-row  >
-
-        <v-col cols="12" xs='12'>
+   <v-form class="mt-3">
+    <v-col class="mx-auto" cols="12" sm="8" xl="5" >
           <v-text-field
-            label="Solo"
-            single-line
-            solo
+            label="Search"
+             solo
           ></v-text-field>
         </v-col>
-
-      </v-row>
-    </v-container>
   </v-form>
 </template>
 
