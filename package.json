@@ -43,13 +43,23 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/strongly-recommended",
       "@vue/standard"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "vue/html-closing-bracket-newline": "off",
+      "vue/html-closing-bracket-spacing": "off",
+      "vue/multiline-html-element-content-newline": "off",
+      "vue/mustache-interpolation-spacing": "off",
+      "vue/require-render-return": "off",
+      "vue/return-in-computed-property": "off",
+      "vue/no-multi-spaces": "off",
+      "vue/no-spaces-around-equal-signs-in-attribute": "off",
+      "vue/require-default-prop": "off"
+    }
   },
   "browserslist": [
     "> 1%",

@@ -1,14 +1,14 @@
 <template>
   <div class="home">
     <v-container >
-     <search-field></search-field>
-          <div class="cards">
-           <cards></cards>
-          </div>
-          <div class="pagination">
-            <pagination></pagination>
-          </div>
-        </v-container>
+      <search-field/>
+      <div class="cards">
+        <cards/>
+      </div>
+      <div class="pagination">
+        <pagination/>
+      </div>
+    </v-container>
   </div>
 </template>
 <script>
