@@ -2,7 +2,7 @@
   <v-container >
     <v-layout >
     <v-timeline align-top dense class="mx-auto">
-      <v-timeline-item v-for="(commit,index) in commits" :key=index color="indigo accent-1" >{{commit.message}}</v-timeline-item>
+      <v-timeline-item v-for="(commit,index) in commits" :key=index color="indigo accent-1">{{commit.message}}</v-timeline-item>
     </v-timeline>
     </v-layout>
   </v-container>

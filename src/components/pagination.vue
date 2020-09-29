@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
   name: 'Pagination',
   data () {
@@ -30,11 +32,12 @@ export default {
    changePage(){
      this.$store.dispatch('fetchRepositories', [this.pagination.searchValue, this.currentPage]);
    }
+  
   },
   computed: {
-    pagination(){
-      return this.$store.getters.pagination
-    }
+    ...mapGetters([
+      'pagination'
+    ])
   }
 }
 </script>
