@@ -44,7 +44,8 @@ export default {
       elem: 1,
       items: [
         { text: 'Home', icon: 'mdi-home', route: '/' },
-        { text: 'About', icon: 'mdi-information', route: '/about' }
+        { text: 'About', icon: 'mdi-information', route: '/about' },
+        {text:  'Timeline', icon:'mdi-chart-timeline',route:'/timeline' }
       ]
     }
   }

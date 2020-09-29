@@ -8,6 +8,7 @@ export const store = new Vuex.Store({
   state: {
     repositories: [],
     repositoryDetails: {},
+    commits: [],
     totalCount: 0,
     searchValue: '',
     currentPage: 1,
@@ -27,6 +28,9 @@ export const store = new Vuex.Store({
     },
     IS_LOADING: (state, payload) => {
       state.isLoading = payload
+    },
+    SET_COMMITS: (state, payload) => {
+      state.commits = payload
     }
   },
   actions: {
@@ -70,6 +74,18 @@ export const store = new Vuex.Store({
       }).catch(error => {
         console.log(error)
       })
+    },
+    fetchCommits({ commit }) {
+      axios.get(`https://api.github.com/repos/LysiukOleksandr/GITHUB-DASHBOARD-APP/commits`)
+        .then(({ data }) => {
+          const payload = data.map((item) => {
+            return {
+              message: item.commit.message
+            }
+          })
+
+          commit('SET_COMMITS', payload)
+        })
     }
   },
   getters: {
