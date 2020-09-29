@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
     totalCount: 0,
     searchValue: '',
     currentPage: 1,
-
+    isLoading: false
   },
   mutations: {
     SET_REPOSITORIES: (state, payload) => {
@@ -24,10 +24,14 @@ export const store = new Vuex.Store({
     SET_SEARCH_DATA: (state, payload) => {
       state.searchValue = payload[0]
       state.currentPage = payload[1]
+    },
+    IS_LOADING: (state, payload) => {
+      state.isLoading = payload
     }
   },
   actions: {
     fetchRepositories({ commit }, [searchValue, page]) {
+      commit('IS_LOADING', true)
       axios.get(`https://api.github.com/search/repositories?q=${searchValue}&sort=stars&per_page=8&page=${page}
       `)
         .then(({ data }) => {
@@ -43,6 +47,7 @@ export const store = new Vuex.Store({
           }), data.total_count]
           commit('SET_SEARCH_DATA', [searchValue, page])
           commit('SET_REPOSITORIES', payload)
+          commit('IS_LOADING', false)
         }).catch(error => {
           console.log(error)
         })
@@ -71,7 +76,7 @@ export const store = new Vuex.Store({
     pagination: (state) => {
       return {
         searchValue: state.searchValue,
-        totalPages: Math.ceil(state.totalCount / 8) >= 125 ? 125 : Math.ceil(state.totalCount / 8),
+        totalPages: Math.ceil(state.totalCount / 8) >= 125 ? 125 : Math.ceil(state.totalCount / 8)
       }
     }
   }
