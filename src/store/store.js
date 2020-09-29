@@ -8,7 +8,10 @@ export const store = new Vuex.Store({
   state: {
     repositories: [],
     repositoryDetails: {},
-    totalCount: 0
+    totalCount: 0,
+    searchValue: '',
+    currentPage: 1,
+
   },
   mutations: {
     SET_REPOSITORIES: (state, payload) => {
@@ -17,11 +20,15 @@ export const store = new Vuex.Store({
     },
     SET_REPOSITORY_DETAILS: (state, payload) => {
       state.repositoryDetails = payload
+    },
+    SET_SEARCH_DATA: (state, payload) => {
+      state.searchValue = payload[0]
+      state.currentPage = payload[1]
     }
   },
   actions: {
-    fetchRepositories ({ commit }, value) {
-      axios.get(`https://api.github.com/search/repositories?q=${value}&sort=stars&per_page=8
+    fetchRepositories({ commit }, [searchValue, page]) {
+      axios.get(`https://api.github.com/search/repositories?q=${searchValue}&sort=stars&per_page=8&page=${page}
       `)
         .then(({ data }) => {
           const payload = [data.items.map((item) => {
@@ -34,15 +41,15 @@ export const store = new Vuex.Store({
               routePath: `card/${item.full_name}`
             }
           }), data.total_count]
+          commit('SET_SEARCH_DATA', [searchValue, page])
           commit('SET_REPOSITORIES', payload)
         }).catch(error => {
           console.log(error)
         })
     },
-    fetchRepositoryDetails ({ commit }, value) {
+    fetchRepositoryDetails({ commit }, value) {
       axios.get(`https://api.github.com/repos/${value}`).then(({ data }) => {
         const payload = {
-
           id: data.id,
           avatar: data.owner.avatar_url,
           name: data.full_name,
@@ -61,6 +68,12 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
+    pagination: (state) => {
+      return {
+        searchValue: state.searchValue,
+        totalPages: Math.ceil(state.totalCount / 8) >= 125 ? 125 : Math.ceil(state.totalCount / 8),
+      }
+    }
   }
 }
 )

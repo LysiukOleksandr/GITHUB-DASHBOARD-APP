@@ -28,14 +28,12 @@ export default {
   name: 'SearchField',
   data () {
     return {
-
       value: ''
-
     }
   },
   methods: {
     onSubmit: function () {
-      this.$store.dispatch('fetchRepositories', this.value)
+      this.$store.dispatch('fetchRepositories', [this.value, 1])
     }
   }
 }

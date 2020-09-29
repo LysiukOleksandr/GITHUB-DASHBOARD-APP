@@ -5,9 +5,11 @@
         <v-col cols="8">
           <v-container class="max-width">
             <v-pagination
-              v-model="page"
-              :length="15"
+              v-show="pagination.totalPages > 1"
+              v-model="currentPage"
+              :length="pagination.totalPages"
               :total-visible="7"
+              @input='changePage'
             />
           </v-container>
         </v-col>
@@ -20,12 +22,19 @@
 export default {
   name: 'Pagination',
   data () {
-    return {
-      page: 1
+    return{
+      currentPage:1,
     }
   },
+  methods: {
+   changePage(){
+     this.$store.dispatch('fetchRepositories', [this.pagination.searchValue, this.currentPage]);
+   }
+  },
   computed: {
-
+    pagination(){
+      return this.$store.getters.pagination
+    }
   }
 }
 </script>
