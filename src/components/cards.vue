@@ -1,15 +1,15 @@
 <template>
- <div
-      class="empty"
-      v-if="repositories.length === 0">
-      Nothing here
-    </div>
+  <div
+    class="empty"
+    v-if="repositories.length === 0">
+    Nothing here
+  </div>
   <v-container v-else>
     <v-layout
       row
       wrap
       justify-center
-      >
+    >
       <v-flex
         xs12
         sm6
@@ -22,21 +22,25 @@
           class="text-xs-center ma-3 pb-1"
           raised
           elevation="5"
-          >
-          <v-responsive class= "pt-4s " height="248px">
-            <v-img :src="repository.avatar"  v-if="!preloader" >
-            </v-img>
-          <v-row
-            class="fill-height ma-0"
-            align="center"
-            justify="center"
-            v-else
-          >
-            <v-progress-circular
-              indeterminate
-              color="red"
-            ></v-progress-circular>
-          </v-row>
+        >
+          <v-responsive
+            class= "pt-4s "
+            height="248px">
+            <v-img
+              :src="repository.avatar"
+              v-if="!preloader" />
+
+            <v-row
+              class="fill-height ma-0"
+              align="center"
+              justify="center"
+              v-else
+            >
+              <v-progress-circular
+                indeterminate
+                color="red"
+              />
+            </v-row>
           </v-responsive>
           <v-card-title class="card-title">
             {{repository.name}}
@@ -74,9 +78,9 @@ export default {
     repositories () {
       return this.$store.state.repositories
     },
-  preloader(){
-    return this.$store.state.isLoading;
-  }
+    preloader () {
+      return this.$store.state.isLoading
+    }
   }
 }
 </script>

@@ -34,7 +34,7 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    fetchRepositories({ commit }, [searchValue, page]) {
+    fetchRepositories ({ commit }, [searchValue, page]) {
       commit('IS_LOADING', true)
       axios.get(`https://api.github.com/search/repositories?q=${searchValue}&sort=stars&per_page=8&page=${page}
       `)
@@ -56,7 +56,7 @@ export const store = new Vuex.Store({
           console.log(error)
         })
     },
-    fetchRepositoryDetails({ commit }, value) {
+    fetchRepositoryDetails ({ commit }, value) {
       axios.get(`https://api.github.com/repos/${value}`).then(({ data }) => {
         const payload = {
           id: data.id,
@@ -75,8 +75,8 @@ export const store = new Vuex.Store({
         console.log(error)
       })
     },
-    fetchCommits({ commit }) {
-      axios.get(`https://api.github.com/repos/LysiukOleksandr/GITHUB-DASHBOARD-APP/commits`)
+    fetchCommits ({ commit }) {
+      axios.get('https://api.github.com/repos/LysiukOleksandr/GITHUB-DASHBOARD-APP/commits')
         .then(({ data }) => {
           const payload = data.map((item) => {
             return {

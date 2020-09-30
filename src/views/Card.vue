@@ -2,12 +2,12 @@
   <v-container>
     <v-card
       class="d-flex flex-column flex-sm-row pb-10"
-      min-height="400px" >
+      min-height="400px " >
       <v-responsive>
         <v-img
           width="200px"
           height="200px"
-          class="rounded-circle mx-auto mt-5 pl-1"
+          class="rounded-circle mx-auto mt-5 pl-2"
           :src="details.avatar"/>
       </v-responsive>
       <v-layout class=" d-flex flex-column">

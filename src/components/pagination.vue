@@ -9,7 +9,7 @@
               v-model="currentPage"
               :length="pagination.totalPages"
               :total-visible="7"
-              @input='changePage'
+              @input="changePage"
             />
           </v-container>
         </v-col>
@@ -19,20 +19,20 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex';
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Pagination',
   data () {
-    return{
-      currentPage:1,
+    return {
+      currentPage: 1
     }
   },
   methods: {
-   changePage(){
-     this.$store.dispatch('fetchRepositories', [this.pagination.searchValue, this.currentPage]);
-   }
-  
+    changePage () {
+      this.$store.dispatch('fetchRepositories', [this.pagination.searchValue, this.currentPage])
+    }
+
   },
   computed: {
     ...mapGetters([
